@@ -2,9 +2,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.Point;
 
 public class InputPanel extends JPanel {
 
@@ -12,9 +13,8 @@ public class InputPanel extends JPanel {
     private JTextField input;
     
     public InputPanel() {
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1600, 100));
         setBackground(Color.WHITE);
-        setLayout(new FlowLayout());
 
         input = new JTextField();
         input.setPreferredSize(new java.awt.Dimension(200, 25));
@@ -28,6 +28,20 @@ public class InputPanel extends JPanel {
         deleteButton.setPreferredSize(new java.awt.Dimension(100, 25));
         add(deleteButton);
 
-        
+        addButton.addActionListener(new ActionListener( ){
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener( ){
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+    }
+
+    public void initActionListeners() {
+
     }
 }

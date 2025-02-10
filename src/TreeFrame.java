@@ -20,11 +20,14 @@ public class TreeFrame extends JFrame {
                 repaint(); 
             }
         });
-        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
-        add(new TreePanel(), BorderLayout.CENTER);
-        add(new InputPanel(), BorderLayout.PAGE_END);
-        //pack();
+
+        TreePanel treePanel = new TreePanel();
+        InputPanel inputPanel = new InputPanel();
+        
+        add(treePanel, BorderLayout.CENTER);
+        add(inputPanel, BorderLayout.PAGE_END);
     }
 
     public static void main(String[] args) {

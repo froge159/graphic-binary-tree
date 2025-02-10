@@ -8,9 +8,8 @@ public class TreePanel extends JPanel {
     private BST tree;
 
     public TreePanel() {
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1600, 900));
         setBackground(Color.WHITE);
-        setLayout(new FlowLayout());
         
         tree = new BST();
     }
