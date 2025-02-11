@@ -1,5 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+import org.w3c.dom.Node;
 
 public class BST {
 
@@ -145,7 +151,50 @@ public class BST {
         }
     }
 
+    private int getHeight(BinaryNode x) {
+        if (x == null) {
+            return -1;
+        }
+
+        int leftHeight = getHeight(x.left());
+        int rightHeight = getHeight(x.right());
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    private void levelOrder(BinaryNode root, int row, int col, int height, List<List<String>> ans) {
+        if (root == null) {
+            return;
+        }
+        ans.get(row).set(col, String.valueOf(root.getValue()));
+        int offset = (int) Math.pow(2, height - row - 1);
+
+        if (root.left() != null) {
+            levelOrder(root.left(), row + 1, col - offset, height, ans);
+        }
+        if (root.right() != null) {
+            levelOrder(root.right(), row + 1, col + offset,height, ans);
+        }
+    }
+
+    private List<List<String>> treeToMatrix(BinaryNode x) {
+        int height = getHeight(x);
+        int rows = height + 1;
+        int cols = (int) Math.pow(2, height + 1) - 1;
+
+        List<List<String>> ans = new ArrayList<>();
+        for (int i = 0; i < rows; i++) {
+            List<String> row = new ArrayList<>(Collections.nCopies(cols, ""));
+            ans.add(row);
+        }
+        levelOrder(root, 0, (cols - 1) / 2, height, ans);
+        return ans;
+    }
+     
+
     public void drawTree(Graphics g) {
         g.setColor(Color.BLACK);
+        List<List<String>> result = treeToMatrix(root);
+        System.out.println(new Random().nextInt());
     }
 }

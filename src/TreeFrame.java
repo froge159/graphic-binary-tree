@@ -1,7 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -21,13 +20,9 @@ public class TreeFrame extends JFrame {
             }
         });
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setLayout(new BorderLayout());
-
-        TreePanel treePanel = new TreePanel();
-        InputPanel inputPanel = new InputPanel();
         
-        add(treePanel, BorderLayout.CENTER);
-        add(inputPanel, BorderLayout.PAGE_END);
+        add(new MainPanel());
+        
     }
 
     public static void main(String[] args) {

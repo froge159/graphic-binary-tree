@@ -10,14 +10,28 @@ public class TreePanel extends JPanel {
     public TreePanel() {
         setPreferredSize(new java.awt.Dimension(1600, 900));
         setBackground(Color.WHITE);
-        
         tree = new BST();
+    }
+
+    public BST tree() {
+        return tree;
+    }
+
+    public void add(BinaryNode x) {
+        tree.add(x);
+        revalidate();
+        repaint();
+    }
+
+    public void remove(Comparable c) {
+        tree.remove(c);
+        revalidate();
+        repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // Draw the binary tree here
         tree.drawTree(g);
     }
 
