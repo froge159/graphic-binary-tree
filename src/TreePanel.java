@@ -1,7 +1,6 @@
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.FlowLayout;
 
 public class TreePanel extends JPanel {
 
@@ -20,19 +19,21 @@ public class TreePanel extends JPanel {
     public void add(BinaryNode x) {
         tree.add(x);
         revalidate();
+        tree.drawText(this);
         repaint();
     }
 
     public void remove(Comparable c) {
         tree.remove(c);
         revalidate();
+        tree.drawText(this);
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        tree.drawTree(g);
+        tree.drawNodes(tree.getRoot(), 0, 69420, g);
     }
 
     

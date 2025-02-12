@@ -2,8 +2,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Color;
 
 public class InputPanel extends JPanel {
@@ -21,12 +19,7 @@ public class InputPanel extends JPanel {
 
         addButton = new JButton("Add");
         addButton.setPreferredSize(new java.awt.Dimension(100, 25));
-        
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("helo");
-            }
-        });
+
         add(addButton);
         
         deleteButton = new JButton("Delete"); 
