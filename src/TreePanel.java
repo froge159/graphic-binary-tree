@@ -18,22 +18,24 @@ public class TreePanel extends JPanel {
 
     public void add(BinaryNode x) {
         tree.add(x);
+        tree.updateNodeInfo(tree.getRoot(), null);
         revalidate();
-        tree.drawText(this);
         repaint();
+        tree.drawText(this);
     }
 
     public void remove(Comparable c) {
         tree.remove(c);
+        tree.updateNodeInfo(tree.getRoot(), null);
         revalidate();
-        tree.drawText(this);
         repaint();
+        tree.drawText(this);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        tree.drawNodes(tree.getRoot(), 0, 69420, g);
+        tree.drawNodes(tree.getRoot(), g);
     }
 
     

@@ -1,7 +1,5 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
-
 import javax.swing.JPanel;
 
 public class BST {
@@ -17,6 +15,7 @@ public class BST {
     public void add(BinaryNode x) {
         if (root == null) {
             root = x;
+            //x.setLevel(0); x.setX(900); x.setY(0);
             return;
         }
         add(root, x);
@@ -25,13 +24,53 @@ public class BST {
     private void add(BinaryNode parent, BinaryNode x) {
         if (parent == null)
             return;
-        if (x.getValue().compareTo(parent.getValue()) < 0)
-            if (parent.left() == null)
+        if (x.getValue().compareTo(parent.getValue()) < 0) {
+            if (parent.left() == null) { /*
+                switch(parent.getLevel()) {
+                    case 0:
+                        x.setX(parent.getX() - 455);
+                        break;
+                    case 1:
+                        x.setX(parent.getX() - 215);
+                        break;
+                    case 2:
+                        x.setX(parent.getX() - 95);
+                        break;
+                    case 3:
+                        x.setX(parent.getX() - 47);
+                        break;
+                    case 4:
+                        x.setX(parent.getX() - 25);
+                }
+                x.setLevel(parent.getLevel() + 1);
+                x.setY(parent.getY() + 200); // y constant */
                 parent.setLeft(x);
+            }
             else
                 add(parent.left(), x);
-        else if (parent.right() == null)
+        }
+        else if (parent.right() == null) { /* 
+            switch(parent.getLevel()) {
+                case 0:
+                    x.setX(parent.getX() + 455);
+                    break;
+                case 1:
+                    x.setX(parent.getX() + 215);
+                    break;
+                case 2:
+                    x.setX(parent.getX() + 95);
+                    break;
+                case 3:
+                    x.setX(parent.getX() + 47);
+                    break;
+                case 4:
+                    x.setX(parent.getX() + 25);
+                    break;
+            }
+            x.setLevel(parent.getLevel() + 1);
+            x.setY(parent.getY() + 200); // y constant */
             parent.setRight(x);
+        }
         else
             add(parent.right(), x);
     }
@@ -150,27 +189,78 @@ public class BST {
         }
     }
     
-    
-    public String drawNodes(BinaryNode k, int level, int prevX, Graphics g) {
+    public String updateNodeInfo(BinaryNode x, BinaryNode parent) {
+        String temp = "";
+        if (x == root) {
+            x.setLevel(0); x.setX(900); x.setY(0);
+        }
+        if (x != null) {
+            temp += x.getValue() + " ";
+            if (parent != null) {
+                if (x.getValue().compareTo(parent.getValue()) < 0) {
+                    switch(parent.getLevel()) {
+                        case 0:
+                            x.setX(parent.getX() - 455);
+                            break;
+                        case 1:
+                            x.setX(parent.getX() - 215);
+                            break;
+                        case 2:
+                            x.setX(parent.getX() - 95);
+                            break;
+                        case 3:
+                            x.setX(parent.getX() - 47);
+                            break;
+                        case 4:
+                            x.setX(parent.getX() - 25);
+                    }
+                    x.setLevel(parent.getLevel() + 1);
+                    x.setY(parent.getY() + 150);
+                }
+                else {
+                    switch(parent.getLevel()) {
+                        case 0:
+                            x.setX(parent.getX() + 455);
+                            break;
+                        case 1:
+                            x.setX(parent.getX() + 215);
+                            break;
+                        case 2:
+                            x.setX(parent.getX() + 95);
+                            break;
+                        case 3:
+                            x.setX(parent.getX() + 47);
+                            break;
+                        case 4:
+                            x.setX(parent.getX() + 25);
+                            break;
+                    }
+                    x.setLevel(parent.getLevel() + 1);
+                    x.setY(parent.getY() + 150);
+                }
+            }
+            temp += updateNodeInfo(x.left(), x);
+            temp += updateNodeInfo(x.right(), x);
+        }
+        return temp;
+    }
+
+    public String drawNodes(BinaryNode k, Graphics g) {
         if (root == null) return "";
 
         String temp = "";
         g.setColor(Color.BLACK);
 
-        if (k == root) {
-            g.drawArc(900, 20, 70, 70, 0, 360);
-            prevX = 900;
-        }
-
         if (k != null) {
             temp += k.getValue();
-            temp += drawNodes(k.left(), level + 1, prevX, g);
-            temp += drawNodes(k.right(), level + 1, prevX, g);
+            g.drawArc(k.getX(), k.getY(), 70, 70, 0, 360);
+            temp += drawNodes(k.left(), g);
+            temp += drawNodes(k.right(),  g);
         }
         return temp;
     }
 
     public void drawText(JPanel panel) {
-
+        
     }
 }
