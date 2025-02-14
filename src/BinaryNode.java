@@ -2,9 +2,9 @@
 public class BinaryNode {
     private BinaryNode left, right;
     private int level, xValue, yValue;
-    private Comparable myValue;
+    private int myValue;
 
-    public BinaryNode(Comparable x) {
+    public BinaryNode(int x) {
         myValue = x;
     }
 
@@ -30,7 +30,7 @@ public class BinaryNode {
         right = r;
     }
 
-    public void setValue(Comparable v) {
+    public void setValue(int v) {
         myValue = v;
     }
 
@@ -38,7 +38,7 @@ public class BinaryNode {
     
     public BinaryNode right() { return right; }
 
-    public Comparable getValue() { return myValue; }
+    public int getValue() { return myValue; }
 
     public String toString() {
         String temp = "Value:" + myValue +

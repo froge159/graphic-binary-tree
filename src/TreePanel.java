@@ -9,6 +9,7 @@ public class TreePanel extends JPanel {
     public TreePanel() {
         setPreferredSize(new java.awt.Dimension(1600, 900));
         setBackground(Color.WHITE);
+        setLayout(null);
         tree = new BST();
     }
 
@@ -21,21 +22,23 @@ public class TreePanel extends JPanel {
         tree.updateNodeInfo(tree.getRoot(), null);
         revalidate();
         repaint();
-        tree.drawText(this);
+        tree.drawText(tree.getRoot(), this);
     }
 
-    public void remove(Comparable c) {
+    public void remove(int c) {
         tree.remove(c);
-        tree.updateNodeInfo(tree.getRoot(), null);
+        tree.updateNodeInfo(tree.getRoot(), null); // update nodes
         revalidate();
-        repaint();
-        tree.drawText(this);
+        repaint(); // draw line, circle
+        removeAll(); // clear panel
+        tree.drawText(tree.getRoot(), this);  // draw text
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        tree.drawNodes(tree.getRoot(), g);
+        tree.drawLines(tree.getRoot(), null, g);
+        tree.drawNodes(tree.getRoot(), null, g);
     }
 
     

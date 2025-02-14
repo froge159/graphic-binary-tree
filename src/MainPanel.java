@@ -16,13 +16,13 @@ public class MainPanel extends JPanel  {
 
         inputPanel.getAddButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                treePanel.add(new BinaryNode(inputPanel.getInput().getText()));
+                treePanel.add(new BinaryNode(Integer.parseInt(inputPanel.getInput().getText())));
                 inputPanel.getInput().setText("");
             }
         });
         inputPanel.getDeleteButton().addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                treePanel.remove(inputPanel.getInput().getText());
+                treePanel.remove(Integer.parseInt(inputPanel.getInput().getText()));
                 inputPanel.getInput().setText("");
             }
         });
