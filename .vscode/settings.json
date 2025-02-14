@@ -1,3 +1,6 @@
 {
-    "terminal.integrated.shell.osx": "/bin/bash"
+    "terminal.integrated.shell.osx": "/bin/bash",
+    "files.exclude": {
+        "**/*.class": true
+    }
 }
