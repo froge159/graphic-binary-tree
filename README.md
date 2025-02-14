@@ -1,1 +1,1 @@
-download the jar and run it
+download grpahic-binarytree.jar
